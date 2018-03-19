@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .pane-main{
+            width: 380px;
+            height: 500px;
+            border:2px solid #ccc;
+            position: absolute;
+            margin:auto;
+            top:0;left:0;right:0;bottom:0;
+        }
+        .body{
+            margin-top: 20px;
+        }
+        .body .pane-item{
+            float:left;
+            width: 100px;
+            height: 100px;
+            background-color:orange;
+            margin-left:20px;
+            margin-bottom:20px;
+        }
+        .begin,.close{
+            display: table;
+            margin: 0 auto;
+            width: 340px;
+            height: 40px;
+
+        }
+
+
+    </style>
+    <script src="getArrayItem.js"></script>
+    <script>
+
+        window.onload=function () {
+            var time;
+            var oBtn=document.getElementById("begin");
+            var oBtn1=document.getElementById("close");
+            var oBody=document.getElementById("body");
+            var aItem=oBody.getElementsByTagName("li");
+            var start=function start() {
+
+                var aColor=["red","yellow","pink","green","blue","purple","gray","black"];
+                var aNum=[0,1,2,3,4,5,6,7,8];
+
+                var aReturnColor=getArrayItem(aColor,3);
+                var aReturnNum=getArrayItem(aNum,3);
+                for(var i=0;i<aItem.length;i++){
+                    aItem[i].style.background="orange";
+                }
+                for(var i=0;i<3;i++){
+                    aItem[aReturnNum[i]].style.background=aReturnColor[i];
+                }
+            }
+
+            oBtn.onclick=function () {
+                time=setInterval(start,1000);
+            };
+            oBtn1.onclick=function () {
+                for(var i=0;i<aItem.length;i++){
+                    aItem[i].style.background="orange";
+                }
+                clearInterval(time);
+
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<div class="pane-main">
+    <ul class="body clearfloat" id="body">
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+        <li class="pane-item"></li>
+    </ul>
+    <input class="begin" id="begin" type="button" value="begin"><br>
+    <input class="close" id="close" type="button" value="close">
+</div>
+</body>
+</html>
